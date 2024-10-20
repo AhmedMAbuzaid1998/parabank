@@ -3,6 +3,12 @@
 This project is a test automation of the [ParaBank](https://parabank.parasoft.com/parabank/index.htm), a demo site that simulates a realistic
 online banking website, and it uses Selenium Webdriver and Java technologies.
 
+# Team Members:
+- Ahmed Abozaid
+- Osama Hassan
+- Mahmoud metwally
+- Khaled Ayoub
+  
 ## Prerequisites
 - JDK 22.0.2;
 - Maven 3.9.6;
