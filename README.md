@@ -20,7 +20,7 @@ online banking website, and it uses Selenium Webdriver and Java technologies.
 
 
 ## Usage
-To use this project, clone it on your machine and open it on your favorite IDE.
+To use this project, clone it on your machine and open it on your IDE.
 
 To run the test automation, you can simply run all the tests located  at the `src/main/resources/Features` dir. This is possible
 because the ParaBank application is already running on a web server. 
