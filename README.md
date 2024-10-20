@@ -1,15 +1,15 @@
-# DEPI-Graduation-Project
+## DEPI-Graduation-Project
 
-# Software Testing SHR1_SWD7_M1e
+## Software Testing SHR1_SWD7_M1e
 
-# Automated Testing Framework for ParaBank Web Application & APIs 
+## Automated Testing Framework for ParaBank Web Application & APIs 
 
 ## Overview
 This project focuses on developing an Automated Testing Framework using Selenium and Cucumber for end-to-end testing of a web application. The framework is designed to cover UI, functionality, and API testing, with the goal of ensuring the reliability and performance of the web application. Additionally, the project involves report generation and bug tracking using tools like JUnit, Postman, and Jira.
 This project is a test automation of the [ParaBank](https://parabank.parasoft.com/parabank/index.htm), a demo site that simulates a realistic
 online banking website, and it uses Selenium Webdriver and Java technologies.
 
-# Team Members:
+## Team Members:
 - Ahmed Abozaid
 - Osama Hassan
 - Mahmoud metwally
