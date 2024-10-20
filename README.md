@@ -1,21 +1,21 @@
+# Automated Testing Framework for ParaBank Web Application & APIs 
+
 ## DEPI-Graduation-Project
 
 ## Software Testing SHR1_SWD7_M1e
 
-## Automated Testing Framework for ParaBank Web Application & APIs 
-
-## Overview
+### Overview
 This project focuses on developing an Automated Testing Framework using Selenium and Cucumber for end-to-end testing of a web application. The framework is designed to cover UI, functionality, and API testing, with the goal of ensuring the reliability and performance of the web application. Additionally, the project involves report generation and bug tracking using tools like JUnit, Postman, and Jira.
 This project is a test automation of the [ParaBank](https://parabank.parasoft.com/parabank/index.htm), a demo site that simulates a realistic
 online banking website, and it uses Selenium Webdriver and Java technologies.
 
-## Team Members:
+### Team Members:
 - Ahmed Abozaid
 - Osama Hassan
 - Mahmoud metwally
 - Khaled Ayoub
 
-##  Features Covered
+###  Features Covered
 This project includes automated testing for the following features of ParaBank:
 
 - Sign Up
@@ -28,7 +28,7 @@ This project includes automated testing for the following features of ParaBank:
 - Find Transactions
 - Forgot Login Information
 
-## Project Objective
+### Project Objective
 The goal is to develop an automated testing framework for thorough and efficient testing of the ParaBank web application. This includes:
 
 - UI and functionality testing using Selenium and Cucumber.
@@ -36,7 +36,7 @@ The goal is to develop an automated testing framework for thorough and efficient
 - Generating detailed test reports.
 - Managing and tracking issues using Jira.
 
-## Technologies Used
+### Technologies Used
 - Selenium WebDriver for automating browser interactions.
 - Cucumber for behavior-driven development (BDD) and test case structuring.
 - Postman for API testing.
@@ -44,7 +44,7 @@ The goal is to develop an automated testing framework for thorough and efficient
 - JUnit for report generation and testing.
 - Maven as the build tool for project management.
 
-## Prerequisites
+### Prerequisites
 - JDK 22.0.2;
 - Maven 3.9.6;
 - Selenium Webdriver 4.25.0;
@@ -54,7 +54,7 @@ The goal is to develop an automated testing framework for thorough and efficient
 - javafaker 1.0.2
 
 
-## Usage
+### Usage
 To use this project, clone it on your machine and open it on your IDE.
 
 To run the test automation, you can simply run all the tests located  at the `src/main/resources/Features` dir. This is possible
