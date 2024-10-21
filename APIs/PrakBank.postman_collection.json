@@ -1,0 +1,1643 @@
+{
+	"info": {
+		"_postman_id": "4089cecb-aa2d-41fa-9aef-43aee3705297",
+		"name": "PrakBank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37972176"
+	},
+	"item": [
+		{
+			"name": "Accounts & Customers",
+			"item": [
+				{
+					"name": "Get Customer Account ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Get Account Successful\", function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response must be valid\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your Account type is correct \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].type).to.be.oneOf([\"CHECKING\", \"SAVINGS\", \"LOAN\"]);\r",
+									"});\r",
+									"\r",
+									"jsonData = pm.response.json();\r",
+									"pm.environment.set(\"accountId\", jsonData[0].id);\r",
+									"pm.environment.set(\"customerId\", jsonData[0].customerId);\r",
+									"pm.environment.set(\"toAccountId\", jsonData[1].id);\r",
+									"console.log(pm.response.json());\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}/accounts",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get account id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed TypeError: Cannot read properties of undefined (reading 'id')\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response must be valid\",function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Your Account type is correct \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.be.oneOf([\"CHECKING\", \"SAVINGS\", \"LOAN\"])\r",
+									"});\r",
+									"jsonData=pm.response.json();\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get customer details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response must be valid\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Response values match datatypes\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.firstName).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get account transactions ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Defined jsonData before accessing it\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your Transaction type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].type).to.be.oneOf([\"Credit\", \"Debit\"]); \r",
+									"    \r",
+									"});\r",
+									"jsonData=pm.response.json();\r",
+									"pm.environment.set(\"Account_Amount\", jsonData[0].amount );\r",
+									"pm.environment.set(\"Transaction_date\", jsonData[0].date);\r",
+									"pm.environment.set(\"Transaction_type\", jsonData[0].type);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction by amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your Transaction type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].type).to.be.oneOf([\"Credit\", \"Debit\"]); \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/amount/{{Account_Amount}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"amount",
+								"{{Account_Amount}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch transaction by month and type for  account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your Transaction type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].type).to.be.oneOf([\"Credit\", \"Debit\"]); \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/month/{{Transaction_date}}/type/{{Transaction_type}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"month",
+								"{{Transaction_date}}",
+								"type",
+								"{{Transaction_type}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch transaction for date range for an account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your Transaction type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].type).to.be.oneOf([\"Credit\", \"Debit\"]); \r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/fromDate/:fromDate/toDate/{{currentDate}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"fromDate",
+								":fromDate",
+								"toDate",
+								"{{currentDate}}"
+							],
+							"variable": [
+								{
+									"key": "fromDate",
+									"value": "1-1-2020"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch transaction for a specific date for an account ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/onDate/{{currentDate}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"onDate",
+								"{{currentDate}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Your Transaction type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.be.oneOf([\"CHECKING\", \"SAVINGS\"]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/createAccount?customerId={{customerId}}&newAccountType=1&fromAccountId={{accountId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"createAccount"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "{{customerId}}"
+								},
+								{
+									"key": "newAccountType",
+									"value": "1"
+								},
+								{
+									"key": "fromAccountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer Funds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response is valid\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.text()).to.include(\"Successfully transferred\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/transfer?fromAccountId={{accountId}}&toAccountId={{toAccountId}}&amount=1",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "fromAccountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"key": "toAccountId",
+									"value": "{{toAccountId}}"
+								},
+								{
+									"key": "amount",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Withdraw Funds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response is valid\", function () {\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.expect(pm.response.text()).to.include(\"Successfully withdrew\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/withdraw?accountId={{accountId}}&amount={{$randomPrice}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"withdraw"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"key": "amount",
+									"value": "{{$randomPrice}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "billpay",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response must be valid\", function(){\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.withBody;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"pm.test(\"Response values must match datatypes\", function(){\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.payeeName).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.amount).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.accountId).to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"address\": {\r\n    \"street\": \"string\",\r\n    \"city\": \"string\",\r\n    \"state\": \"string\",\r\n    \"zipCode\": \"string\"\r\n  },\r\n  \"phoneNumber\": \"string\",\r\n  \"accountNumber\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_url}}/billpay?accountId={{accountId}}&amount={{$randomPrice}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"billpay"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"key": "amount",
+									"value": "{{$randomPrice}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update customer information ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Data is updated\" , function(){\r",
+									"    pm.expect(pm.response.text()).to.include(\"Successfully updated customer profile\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/update/{{customerId}}?firstName={{$randomFirstName}}&lastName={{$randomLastName}}&street={{$randomStreetAddress}}&city={{$randomCity}}&state={{$randomCountry}}&zipCode={{$randomCountryCode}}&phoneNumber={{$randomPhoneNumber}}&ssn=2344&username={{$randomUserName}}&password={{$randomPassword}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"update",
+								"{{customerId}}"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "{{$randomFirstName}}"
+								},
+								{
+									"key": "lastName",
+									"value": "{{$randomLastName}}"
+								},
+								{
+									"key": "street",
+									"value": "{{$randomStreetAddress}}"
+								},
+								{
+									"key": "city",
+									"value": "{{$randomCity}}"
+								},
+								{
+									"key": "state",
+									"value": "{{$randomCountry}}"
+								},
+								{
+									"key": "zipCode",
+									"value": "{{$randomCountryCode}}"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "{{$randomPhoneNumber}}"
+								},
+								{
+									"key": "ssn",
+									"value": "2344"
+								},
+								{
+									"key": "username",
+									"value": "{{$randomUserName}}"
+								},
+								{
+									"key": "password",
+									"value": "{{$randomPassword}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get position for customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response values must match datatypes\", function(){\r",
+									"    const jsonData = pm.response.json();\r",
+									"pm.expect(jsonData[0].positionId).to.be.a(\"number\")\r",
+									"pm.expect(jsonData[0].customerId).to.be.a(\"number\")\r",
+									"pm.expect(jsonData[0].name).to.be.a(\"string\") \r",
+									"pm.expect(jsonData[0].symbol).to.be.a(\"string\") \r",
+									"pm.expect(jsonData[0].shares).to.be.a(\"number\") \r",
+									"\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}/positions",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "JMS",
+			"item": [
+				{
+					"name": "Stop JMS listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{Base_url}}/shutdownJmsListener",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"shutdownJmsListener"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start JMS listener",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{Base_url}}/startupJmsListener",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"startupJmsListener"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loans",
+			"item": [
+				{
+					"name": "Request loan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response values must match datatypes\", function(){\r",
+									"    const jasonData = pm.response.json(); \r",
+									"    pm.expect(jasonData.responseDate).to.be.a(\"number\"); \r",
+									"pm.expect(jasonData.loanProviderName).to.be.a(\"string\"); \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/requestLoan?customerId={{customerId}}&amount={{$randomPrice}}&downPayment=10&fromAccountId={{accountId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"requestLoan"
+							],
+							"query": [
+								{
+									"key": "customerId",
+									"value": "{{customerId}}"
+								},
+								{
+									"key": "amount",
+									"value": "{{$randomPrice}}"
+								},
+								{
+									"key": "downPayment",
+									"value": "10"
+								},
+								{
+									"key": "fromAccountId",
+									"value": "{{accountId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Misc",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Fixed syntax error in response values test\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response values must match datatypes\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.id).to.be.a('number');\r",
+									"    pm.expect(jsonData.firstName).to.be.a('string');\r",
+									"    pm.expect(jsonData.lastName).to.be.a('string');\r",
+									"    pm.expect(jsonData.address).to.be.an('object');\r",
+									"    pm.expect(jsonData.address.street).to.be.a('string');\r",
+									"    pm.expect(jsonData.address.city).to.be.a('string');\r",
+									"    pm.expect(jsonData.address.state).to.be.a('string');\r",
+									"    pm.expect(jsonData.address.zipCode).to.be.a('string');\r",
+									"    pm.expect(jsonData.phoneNumber).to.be.a('string');\r",
+									"    pm.expect(jsonData.ssn).to.be.a('string');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/login/:userName/:Password",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"login",
+								":userName",
+								":Password"
+							],
+							"variable": [
+								{
+									"key": "userName",
+									"value": "romeo.rodriguez",
+									"description": "Enter user name"
+								},
+								{
+									"key": "Password",
+									"value": "0xexaxh4le",
+									"description": "Enter password "
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "**Set parameter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 12989,\r\n    \"firstName\": \"Sona\",\r\n    \"lastName\": \"Zulauf\",\r\n    \"address\": {\r\n        \"street\": \"35381 Tromp Dam\",\r\n        \"city\": \"Alanfort\",\r\n        \"state\": \"Virginia\",\r\n        \"zipCode\": \"18451\"\r\n    },\r\n    \"phoneNumber\": \"271-070-2514\",\r\n    \"ssn\": \"B000F8FY6M\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{Base_url}}/setParameter/:Parameter Name/:Parameter Value",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"setParameter",
+								":Parameter Name",
+								":Parameter Value"
+							],
+							"variable": [
+								{
+									"key": "Parameter Name",
+									"value": "{{$randomNameSuffix}}"
+								},
+								{
+									"key": "Parameter Value",
+									"value": "{{$randomBsBuzz}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Positions",
+			"item": [
+				{
+					"name": "Buy a position",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData= pm.response.json();\r",
+									"    pm.expect(jasonData[0].positionId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].customerId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].name).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].symbol).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].shares).to.be.a(\"number\");\r",
+									"    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}/buyPosition?accountId={{accountId}}&name={{$randomUserAgent}}&symbol={{$randomProductAdjective}}&shares={{$randomInt}}&pricePerShare={{$randomPrice}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}",
+								"buyPosition"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"key": "name",
+									"value": "{{$randomUserAgent}}"
+								},
+								{
+									"key": "symbol",
+									"value": "{{$randomProductAdjective}}"
+								},
+								{
+									"key": "shares",
+									"value": "{{$randomInt}}"
+								},
+								{
+									"key": "pricePerShare",
+									"value": "{{$randomPrice}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get position for customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Defined jsonData as an empty object before using it in the test script\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].positionId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData[0].customerId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].symbol).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].shares).to.be.a(\"number\");\r",
+									"});\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"positionId\", jsonData[0].positionId);\r",
+									"pm.environment.set(\"name\", jsonData[0].name);\r",
+									"pm.environment.set(\"symbol\", jsonData[0].symbol);\r",
+									"pm.environment.set(\"shares\", jsonData[0].shares);\r",
+									"pm.environment.set(\"purchasePrice\", jsonData[0].purchasePrice);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}/positions",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}",
+								"positions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get position by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.positionId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.customerId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.symbol).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.shares).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/positions/{{positionId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"positions",
+								"{{positionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sell position",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData[0].positionId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData[0].customerId).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData[0].name).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].symbol).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData[0].shares).to.be.a(\"number\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/customers/{{customerId}}/sellPosition?accountId={{accountId}}&positionId={{positionId}}&shares={{shares}}&pricePerShare={{purchasePrice}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"customers",
+								"{{customerId}}",
+								"sellPosition"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "{{accountId}}"
+								},
+								{
+									"key": "positionId",
+									"value": "{{positionId}}"
+								},
+								{
+									"key": "shares",
+									"value": "{{shares}}"
+								},
+								{
+									"key": "pricePerShare",
+									"value": "{{purchasePrice}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get list of transaction for the account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData[0].id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].description).to.be.a(\"string\");\r",
+									"})\r",
+									"var jasonData = pm.response.json();\r",
+									"pm.environment.set(\"transactionId\",jasonData[0].id);\r",
+									"pm.environment.set(\"transactionAmount\",jasonData[0].amount);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction for id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData.id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData.accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData.type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData.date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData.amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData.description).to.be.a(\"string\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/transactions/{{transactionId}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"transactions",
+								"{{transactionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get transaction by amount for account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData[0].id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].description).to.be.a(\"string\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/amount/{{transactionAmount}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"amount",
+								"{{transactionAmount}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch transaction by month for account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData[0].id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].description).to.be.a(\"string\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/month/{{currentDate}}/type/{{Transaction_type}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"month",
+								"{{currentDate}}",
+								"type",
+								"{{Transaction_type}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch transaction by date range for account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData[0].id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].description).to.be.a(\"string\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/fromDate/{{currentDate}}/toDate/{{currentDate}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"fromDate",
+								"{{currentDate}}",
+								"toDate",
+								"{{currentDate}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch transaction for specific date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"response values must match datatypes\" , function(){\r",
+									"    var jasonData = pm.response.json();\r",
+									"    pm.expect(jasonData[0].id).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].accountId).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].type).to.be.a(\"string\");\r",
+									"    pm.expect(jasonData[0].date).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].amount).to.be.a(\"number\");\r",
+									"    pm.expect(jasonData[0].description).to.be.a(\"string\");\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{Base_url}}/accounts/{{accountId}}/transactions/onDate/{{currentDate}}",
+							"host": [
+								"{{Base_url}}"
+							],
+							"path": [
+								"accounts",
+								"{{accountId}}",
+								"transactions",
+								"onDate",
+								"{{currentDate}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
