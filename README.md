@@ -19,15 +19,15 @@ online banking website, and it uses Selenium Webdriver and Java technologies.
 ###  Features Covered
 This project includes automated testing for the following features of ParaBank:
 
-- Sign Up
-- Sign In
-- Bill Pay
-- Open New Account
-- Transfer Funds
-- Request Loan
-- Update Contact Information
-- Find Transactions
-- Forgot Login Information
+- [Sign Up](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/01_SignUp.feature)
+- [Sign In](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/02_SignIn.feature)
+- [Bill Pay](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/03_BillPay.feature)
+- [Open New Account](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/04_OpenNewAccount.feature)
+- [Transfer Funds](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/05_TransferFunds.feature)
+- [Request Loan](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/06_RequestLoan.feature)
+- [Update Contact Information](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/07_UpdateContactInfo.feature)
+- [Find Transactions](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/08_FindTransactions.feature)
+- [Forgot Login Information](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/src/main/resources/Features/09_Forgot%20login%20info.feature)
 
 ### Project Objective
 The goal is to develop an automated testing framework for thorough and efficient testing of the ParaBank web application. This includes:
