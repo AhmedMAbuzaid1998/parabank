@@ -1,8 +1,9 @@
-# Automated Testing Framework for ParaBank Web Application & APIs 
-
-## DEPI-Graduation-Project
+# DEPI-Graduation-Project
+![DEPI](./DEPILogo.png) 
 
 ## Software Testing SHR1_SWD7_M1e
+
+## Automated Testing Framework for ParaBank Web Application & APIs
 
 ### Overview
 This project focuses on developing an Automated Testing Framework using Selenium and Cucumber for end-to-end testing of a web application. The framework is designed to cover UI, functionality, and API testing, with the goal of ensuring the reliability and performance of the web application. Additionally, the project involves report generation and bug tracking using tools like JUnit, Postman, and Jira.
@@ -52,6 +53,9 @@ The goal is to develop an automated testing framework for thorough and efficient
 - cucumber-java 7.18.1;
 - cucumber-junit 7.18.1;
 - javafaker 1.0.2
+
+### Overview video :
+[Link](https://drive.google.com/file/d/1SYusmVDIhtnHU-oOyQRP4SVEugp-OS9o/view?usp=drive_link)
 
 
 ### Usage
