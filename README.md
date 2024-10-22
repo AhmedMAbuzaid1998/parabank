@@ -1,7 +1,7 @@
 # DEPI-Graduation-Project
 ![DEPI](./DEPILogo.png)
 
-## Software Testing SHR1_SWD7_M1e 
+## Software Testing SHR1_SWD7_M1e  
 
 ## Automated Testing Framework for ParaBank Web Application & APIs
 
