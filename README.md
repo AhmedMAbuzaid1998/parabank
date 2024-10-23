@@ -11,11 +11,11 @@ This project is a test automation of the [ParaBank](https://parabank.parasoft.co
 online banking website, and it uses Selenium Webdriver and Java technologies.
 
 ### Team Members:
-- Khaled Ayoub
-- Ahmed Abozaid
-- Osama Hassan
-- Mahmoud metwally
-- Sherif Alaa
+- [Khaled Ayoub](https://github.com/Khaled-Ayoub)
+- [Ahmed Abozaid](https://github.com/AhmedMAbuzaid1998)
+- [Osama Hassan](https://github.com/hassanossama)
+- [Mahmoud metwally](https://github.com/ma7moudmetwaly)
+- [Sherif Alaa](https://github.com/sherifalaaaali)
 
 ###  Features Covered
 This project includes automated testing for the following features of ParaBank:
