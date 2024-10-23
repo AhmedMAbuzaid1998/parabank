@@ -57,7 +57,7 @@ The goal is to develop an automated testing framework for thorough and efficient
 
 ### Overview links :
 - [Overview Video](https://drive.google.com/file/d/1SYusmVDIhtnHU-oOyQRP4SVEugp-OS9o/view?usp=drive_link)
-- [presentation](https://docs.google.com/presentation/d/1GVDiG-E9zBU7s-6UiEbHQ8sAXK9okJFd/edit?usp=drive_link&ouid=113442409587337926848&rtpof=true&sd=true)
+- [presentation](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/Parabank_Presentation.pptx)
 
 
 ### Usage
