@@ -16,6 +16,7 @@ online banking website, and it uses Selenium Webdriver and Java technologies.
 - [Osama Hassan](https://github.com/hassanossama)
 - [Mahmoud metwally](https://github.com/ma7moudmetwaly)
 - [Sherif Alaa](https://github.com/sherifalaaaali)
+- [Abdullah Nasr](https://github.com/aazn37)
 
 ###  Features Covered
 This project includes automated testing for the following features of ParaBank:
