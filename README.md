@@ -61,7 +61,6 @@ The goal is to develop an automated testing framework for thorough and efficient
 - [Overview Video](https://drive.google.com/file/d/1SYusmVDIhtnHU-oOyQRP4SVEugp-OS9o/view?usp=drive_link)
 - [presentation](https://github.com/AhmedMAbuzaid1998/parabank/blob/main/Parabank_Presentation.pptx)
 
-### Usage
 
 ### Usage
 To use this project, clone it on your machine and open it on your IDE.
